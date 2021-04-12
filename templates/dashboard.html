@@ -2,142 +2,260 @@
 <html>
 <head>
 	<title>Dashboard</title>
+	<style type="text/css">
+		body, html {
+		  width: 100%;
+		  height: 100%;
+		  margin: 0;
+		}
+
+		.container {
+		  width: 100%;
+		  height: 100%;
+		}
+
+		.left_pane {
+		    width: 35%;
+		    height: 80%;
+		    float: left;
+		    background-color: lightgreen;
+		    border-collapse: collapse;
+		}
+
+		.right_top_pane {
+		  width: 65%;
+		  height: 65%;
+		  position: relative;
+		  float: right;
+		  background-color: yellow;
+		  border-collapse: collapse;
+		}
+
+		.right_bottom_pane {
+		  width: 65%;
+		  height: 15%;
+		  position: relative;
+		  float: right;
+		  background-color: royalblue;
+		  border-collapse: collapse;
+		}
+
+		.toppane {
+		  width: 100%;
+		  height: 10%;
+		  border-collapse: collapse;
+		  background-color: #4da6ff;
+		}
+
+		.bottompane {
+		  width: 100%;
+		  height: 10%;
+		  float: left;
+		  border-collapse: collapse;
+		  /*background-color: #4da6ff;*/
+		  background-color: #fff;
+		}
+
+		.logout {
+		  width: 30%;
+		  font-size: 25px;
+		  border-radius: 12px;
+		  margin-left: 10px;
+		  background-color: #fff;
+		}
+
+		.logout:hover {
+			background-color: #888;
+		}
+
+		.btn {
+		  /*width: 30%;*/
+		  font-size: 20px;
+		  border-radius: 12px;
+		  margin-left: 10px;
+		  background-color: #fff;
+		}
+
+		.btn:hover {
+			background-color: #888;
+		}
+
+		input[type=text], input[type=password] {   
+		  width: 100%;   
+		  margin: 8px 0;  
+		  padding: 12px 20px;   
+		  display: inline-block;   
+		  border: 2px solid green;   
+		  box-sizing: border-box;   
+		} 
+
+		.vertical-menu {
+		  width: 200px;
+		  height: 150px;
+		  overflow-y: auto;
+		}
+
+		.vertical-menu a {
+		  background-color: #eee;
+		  color: black;
+		  display: block;
+		  padding: 12px;
+		  text-decoration: none;
+		}
+
+		.vertical-menu a:hover {
+		  background-color: #ccc;
+		}
+
+		.vertical-menu a.active {
+		  background-color: #4CAF50;
+		  color: white;
+		}
+
+		.vertical-menu2 {
+		  width: 200px;
+		  height: 340px;
+		  overflow-y: auto;
+		  scroll-behavior: smooth;
+		}
+
+		.vertical-menu2 a {
+		  background-color: #eee;
+		  color: black;
+		  display: block;
+		  padding: 12px;
+		  text-decoration: none;
+		}
+
+		.vertical-menu2 a:hover {
+		  background-color: #ccc;
+		}
+
+		.vertical-menu2 a.active {
+		  background-color: #4CAF50;
+		  color: white;
+		}
+
+
+	</style>
 </head>
-<style type="text/css">
-
-.test {
-  width: 10%;
-  display: inline;
-  overflow: auto;
-  white-space: nowrap;
-  margin: 0px auto;
-  float: right;
-}
-
-.vertical-menu {
-  width: 200px;
-  height: 150px;
-  overflow-y: auto;
-}
-
-.vertical-menu a {
-  background-color: #eee;
-  color: black;
-  display: block;
-  padding: 12px;
-  text-decoration: none;
-}
-
-.vertical-menu a:hover {
-  background-color: #ccc;
-}
-
-.vertical-menu a.active {
-  background-color: #4CAF50;
-  color: white;
-}
-
-.user{
-  height: 100%;
-  width: 100%;
-  /*position: fixed;*/
-  z-index: 1;
-  top: 0;
-  overflow-x: hidden;
-  padding-top: 20px;
-  align-content: center;
-}
-
-.group {
-  height: 100%;
-  width: 100%;
-  /*position: fixed;*/
-  z-index: 1;
-  top: 0;
-  overflow-x: hidden;
-  padding-top: 20px;
-  align-content: center;
-}
-
-.message{
-  height: 100%;
-  width: 100%;
-  /*position: fixed;*/
-  z-index: 1;
-  top: 0;
-  overflow-x: hidden;
-  padding-top: 20px;
-  align-content: center;
-}
-
-/* Control the left side */
-.left {
-  left: 0;
-  background-color: #fff;
-}
-
-/* Control the right side */
-.right {
-  right: 0;
-  background-color: #fff;
-}
-
-</style>
-
 <body>
-	<div style="align-content:center">
+	<div class="container">
+	    <div class="toppane">
+	    	<table border="1px" width="100%">
+	    		<tr>
+	    			<td>
+	    				<h1 style="margin-left: 20px;"> Dashboard {{uid}} </h1>
+	    			</td>
+	    			<td style="text-align:center">
+	    				<form action="/logout/" method="POST">
+						    <button class="logout">Logout</button>
+						</form>
+	    			</td>
+	    		</tr>
+	    	</table>
+	    </div>
 
-	<div>
-		<h1> Dashboard {{uid}}
-		<div class="test">
-			<a href="/logout"><button> Logout </button></a>
-		</div>
-		</h1>
-	</div>
-	<table border="1px" style="width:100%">
-		<tr>
-			<td>
-				<div class="user left">
-					<form action="/fetch_users/" method="post">
-					    <button style="width:100%"><h3>Fetch Users</h3></button>
-					</form>
-					<div class="vertical-menu" style="width:100%">
-						<!-- <a href="#">link</a> -->
-					    {% for user in users %}
-							<a href="#">{{user}}</a>
-						{% endfor %}
-					</div>
-				</div>
-			</td>
-			<td rowspan="2">
-				<div class="message right">
-					<button style="width:100%"><h3>Message Window</h3></button>
-					<div class="vertical-menu" style="width:100%">
-					  <a href="#">Link 1</a>
-					  <a href="#">Link 2</a>
-					  <a href="#">Link 3</a>
-					  <a href="#">Link 4</a>
-					</div>
-				</div>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<div class="group left">
-					<form action="/fetch_groups/" method="post">
-					    <button style="width:100%"><h3>Fetch Groups</h3></button>
-					</form>
-					<div class="vertical-menu" style="width:100%">
-						<!-- <a href="#">link</a> -->
-					    {% for group in groups %}
-							<a href="#">{{group}}</a>
-						{% endfor %}
-					</div>
-				</div>
-			</td>
-		</tr>
-	</table>
+	    <div class="left_pane">
+	    	<table border="1px" width="100%">
+	    		<tr>
+	    			<td>
+	    				<form action="/fetch_users/" method="POST">
+						    <button style="width:100%;margin-top: 10px;"><h3>Fetch Users</h3></button>
+						</form>
+						<div id="bottom" class="vertical-menu" style="width:100%">
+							<!-- <a href="#">link</a> -->
+						    {% for user in users %}
+								<a href="{{ url_for('update_cid', chat_id = user) }}" >{{user}}</a>
+								<!-- <a href="#">{{user}}</a> -->
+							{% endfor %}
+						</div>
+	    			</td>
+	    		</tr>
+	    		<tr>
+	    			<td>
+	    				<form action="/fetch_groups/" method="POST">
+						    <button style="width:100%;margin-top: 10px;"><h3>Fetch Groups</h3></button>
+						</form>
+						<div class="vertical-menu" style="width:100%">
+							<!-- <a href="#">link</a> -->
+						    {% for group in groups %}
+								<a href="{{ url_for('update_cid',chat_id = group) }}" >{{group}}</a>
+								<!-- <a href="#">{{group}}</a> -->
+							{% endfor %}
+						</div>
+	    			</td>
+	    		</tr>
+	    	</table>
+			
+	    </div>
 
+	    <div class="right_top_pane">
+	    	
+			<label style="width:100%;margin-top: 10px;"><h3>Chat {{cid}}</h3></label>
+			
+			<div class="vertical-menu2" id="chat-window" style="width:100%">
+				<!-- <a href="#">link</a> -->
+			    {% for msg in msgs %}
+			    	<!-- <div> -->
+			    		<table width="100%">
+			    			<tr>
+			    				<td width="50%">
+			    					<a href="#">{{msg}}</a>
+			    				</td width="20%">
+			    				<td>
+			    					<label>Time</label>
+			    				</td>
+			    				<td width="15%" style="text-align:center">
+			    					<form action="/fetch_msgs/" method="POST">
+				    					<button class="btn">Delete</button>
+				    				</form>
+			    				</td>
+			    				<td width="15%" style="text-align:center">
+			    					<form action="/fetch_msgs/" method="POST">
+			    						<button class="btn">Update</button>
+			    					</form>
+			    				</td>
+			    			</tr>
+			    		</table>
+			    	<!-- </div> -->
+				{% endfor %}
+			</div>
+			<script>
+		        chatWindow = document.getElementById('chat-window'); 
+				var xH = chatWindow.scrollHeight; 
+				chatWindow.scrollTo(0, xH);
+		    </script>
+	    </div>
+
+
+	    <div class="right_bottom_pane">
+	    	<form action="/fetch_msgs/" method="POST">
+	    		<table width="100%">
+		    		<tr>
+		    			<td>
+		    				<input type="text" name="typed_msg" id="typed_msg" placeholder="Type a message..."/>
+		    			</td>
+		    			<td style="text-align:center">
+							<button type="submit" class="btn">Send</button>
+		    			</td>
+		    		</tr>
+		    	</table>
+			</form>
+	    </div>
+
+	    <!-- <div class="left_bottom_pane">
+			
+    	</div> -->
+    	<div class="bottompane">
+	    	<!-- <table border="1px" width="100%">
+	    		<tr>
+	    			<td> -->
+	    				<h2 style="margin-left: 20px;"> &#169; Made by Shubham, Shanu, Shobhit, Yash and Harshit</h2>
+	    			<!-- </td>
+	    		</tr>
+	    	</table> -->
+	    </div>
 	</div>
 </body>
 </html>
