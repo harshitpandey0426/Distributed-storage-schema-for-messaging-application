@@ -1,0 +1,16 @@
+{
+	"uid":"user1",
+	"isGroup":"true",
+	"uid2":"group1"
+}
+
+
+{
+	"uid":"user1",
+	"msgs":{
+		"uid2":"user1",
+		"msg":"text",
+		"timestamp":"123456787654",
+		"msg_id":"123"
+	}
+}
